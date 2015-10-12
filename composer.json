@@ -1,0 +1,19 @@
+{
+  "name": "",
+  "description": "",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Olexandr Bazylevych",
+      "email": "baz.production@gmail.com"
+    }
+  ],
+  "require": {
+    "smarty/smarty": "3.1.x-dev",
+    "twbs/bootstrap": "v3.3.5"
+  },
+  "autoload": {
+    "classmap": ["controllers/", "models/"]
+  }
+}

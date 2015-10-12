@@ -1,0 +1,9 @@
+AddDefaultCharset UTF-8
+php_flag display_errors on
+
+Options +FollowSymLinks
+IndexIgnore */*
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule .* index.php [L]
