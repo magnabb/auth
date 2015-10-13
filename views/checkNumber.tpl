@@ -3,7 +3,7 @@
 
         <div class="form-group">
             <label for="exampleInputEmail1">Check code</label>
-            <input type="text" class="form-control" name="checkCode" placeholder="Check code">
+            <input type="text" class="form-control" name="checkCode" placeholder="SMS code">
         </div>
 
         <button type="submit" class="btn btn-default">Send</button>

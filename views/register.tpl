@@ -1,15 +1,9 @@
 <div class="col-md-6 col-md-offset-3">
     <form id='register' method="post" action="/register/checkNumber">
 
-        {if isset($error)}
-            <div class="form-group has-error">
-                {$error}
-            </div>
-        {/if}
-
         <div class="form-group">
             <label for="exampleInputEmail1">Phone number</label>
-            <input type="tel" class="form-control" name="phoneNumber" placeholder="Phone number">
+            <input type="tel" class="form-control" name="phoneNumber" placeholder="380631234567">
         </div>
 
         {*<div class="form-group">*}

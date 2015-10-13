@@ -2,7 +2,7 @@
     <form method="post" action="/auth/check">
         <div class="form-group">
             <label for="exampleInputEmail1">Phone number</label>
-            <input type="tel" class="form-control" name="phoneNumber" placeholder="Phone number">
+            <input type="tel" class="form-control" name="phoneNumber" placeholder="380631234567">
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
