@@ -15,7 +15,7 @@ class Register extends Controller
      * API string from @link sms.ru
      * @var string
      */
-    private $api_id = '';
+    private $api_id = '4693ee31-893e-2214-d143-d6ca050d120f';
 
     /**
      * Show registration page
@@ -45,13 +45,12 @@ class Register extends Controller
 
             // check identical passwords
             if ($_POST['password'] !== $_POST['repassword']) {
-                $values['error'] = 'Passwords don’t match';
-                return $values;
+                return false;
             }
 
             // check user exists
             if( is_array( (new Model())->getUser($_POST['phoneNumber']) ) ){
-                return [];
+                return false;
             }
 
             // Save data
@@ -60,17 +59,20 @@ class Register extends Controller
             // Generate sms code
             $_SESSION['code'] = (string)mt_rand(1000, 9999);
 
-            // todo: remove it when connect api
+            // todo: remove it when setup api
             $values['code'] = $_SESSION['code'];
 
-            // todo: uncomment it when connect api
-//                $answer = file_get_contents('http://sms.ru/sms/send?api_id='.$this->api_id
-//                    .'&to='.$_POST['phoneNumber']
-//                    .'&text='.urlencode("Your code: $code"));
-//                if ($answer !== '100'){
-//                    $values[] = ['error' => 'Oops, something wrong with your phone number.'];
-//                    return $values;
-//                }
+            // Send sms
+            $answer = file_get_contents('http://sms.ru/sms/send?api_id='.$this->api_id
+                .'&to='.$_POST['phoneNumber']
+                .'&text='.urlencode('Your code: '.$_SESSION['code']));
+
+
+            $answer = explode('\n', $answer);
+
+            if (in_array('100', $answer)){
+                return false;
+            }
 
 
         }
@@ -88,7 +90,7 @@ class Register extends Controller
     public function sendAction(){
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             if ($_POST['checkCode'] !== $_SESSION['code']) {
-                return [];
+                return false;
             }
 
             // Write user in DB

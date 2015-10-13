@@ -13,7 +13,7 @@ switch($_SERVER['REQUEST_URI']){
     case '/register/checkNumber':
         $action = new \magnabb\controller\Register();
         $res = $action->checkAction();
-        if (is_array($res)) {
+        if (!$res) {
             header('Location: /register', true, 307);
             die;
         }
@@ -46,7 +46,7 @@ switch($_SERVER['REQUEST_URI']){
     case '/auth/check':
         $action = new \magnabb\controller\Authorise();
 
-        if (is_array($action)) {
+        if (!$action) {
             // if user doesn`t exists
             // relocate to main page
             header('Location: /', true, 307);
